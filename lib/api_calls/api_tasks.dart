@@ -44,4 +44,34 @@ class ApiTask {
     });
     return resp;
   }
+
+  static Future<int> addNewtask(body) async {
+    int statusCode = 0;
+    await getTokenSharedPref().then((token) async {
+      final response = await http.post('${URLS.BASE_URL}/task',
+          body: jsonEncode(body),
+          headers: {
+            "Content-type": "application/json",
+            "Authorization": "Bearer $token"
+          });
+      statusCode = response.statusCode;
+    });
+    return statusCode;
+  }
+
+  static Future<bool> deleteTaskbyId(id) async {
+    bool resp = false;
+    await getTokenSharedPref().then((token) async {
+      final response = await http.delete('${URLS.BASE_URL}/task/$id', headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $token"
+      });
+      if (response.statusCode == 200) {
+        resp = true;
+      } else {
+        resp = false;
+      }
+    });
+    return resp;
+  }
 }

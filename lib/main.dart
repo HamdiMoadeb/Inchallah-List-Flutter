@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_ui_app/screens/HomePage.dart';
 import 'package:login_ui_app/screens/Register.dart';
+import 'package:login_ui_app/screens/addTask.dart';
 
 import 'screens/loginPage.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => T3SignIn(),
         '/register': (context) => RegisterPage(),
         '/home': (context) => HomePage(),
+        '/addTask': (context) => AddTaskPage(),
       },
     );
   }
