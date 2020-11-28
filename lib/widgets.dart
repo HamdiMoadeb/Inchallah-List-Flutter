@@ -3,10 +3,34 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'utils.dart';
 
-Padding t3EditTextField(var hintText, {isPassword = true}) {
+Future<void> showMyDialog(BuildContext context, String title, String message,
+    Function onPressed) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
+        content: SingleChildScrollView(
+          child: Text(message),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('OK'),
+            onPressed: onPressed,
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Padding t3EditTextField(var hintText, TextEditingController controller,
+    {isPassword = true}) {
   return Padding(
       padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: TextFormField(
+        controller: controller,
         style: TextStyle(fontSize: 18),
         obscureText: isPassword,
         decoration: InputDecoration(

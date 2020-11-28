@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+saveTokenSharedPref(String token) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('token', token);
+}
+
+Future<String> getTokenSharedPref() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return await prefs.getString('token');
+}
 
 double defaultRadius = 8.0;
 double defaultBlurRadius = 5.0;
